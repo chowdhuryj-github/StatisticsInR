@@ -1,0 +1,110 @@
+---
+title: "Activity 1 - [INSERT YOUR NAME HERE]"
+date: 'Due Date: Febraury 5, 2025'
+output: html_notebook
+---
+
+The file “Activity1.csv'” (found in Canvas) contains some data for the 574 players that played at least one game in the NBA during the 2023-2024 season (collected from basketball-reference.com).
+
+If you make sure that the file is in the same folder as this markdown file, you should be able to use it with no problems as long as you run the chunk of code below. I've just named it "nba" for ease of use, but you can change that if you want to. I've also included some code to take a random sample of size 50, and called it "mysample" (again feel free to change the name if you want). You will need to use the sample in Problem 2.
+
+```{r}
+nba <- data.frame(read.csv("Activity1.csv"))
+set.seed(77)
+mysample <- nba[sample(nrow(nba), 50), ]
+```
+
+## Problem 1: Describing/Summarizing One Categorical Variable
+
+### Part (a)
+Use the table() function to create what is essentially a frequency distribution for the position (Pos) variable. Assign this table the name "positions" and then view the table.
+
+```{r}
+Pos = nba$Pos
+positions = table(Pos)
+positions
+```
+
+### Part (b) 
+Use your result from part (a) to determine how many and what percent of NBA players are guards (both PG and SG are considered guards). Simply type your answer below, after "ANSWER:" but before the second "**". If you use R to help in your calculations, include the code you used in the following chunk.
+
+```{r}
+#This chunk is here for any calculations if needed in part (b).
+
+```
+
+
+**ANSWER: **
+
+### Part (c)
+Use the barplot() function to create a bar graph summarizing the position variable. Include a title and labels for each axis using the arguments like: main = "title", xlab = "x label", and ylab = "y label"
+
+```{r}
+
+```
+
+## Problem 2: Summarizing One Quantative Variable
+
+
+### Part (a)
+Calculate the mean and standard deviation of the points per game (PTS) variable for the population. Do the same for the sample. Use the code chunk below for calculations, and type your answers as one or more sentences in the space provided, as before.
+
+```{r}
+
+```
+**ANSWER: **
+
+### Part (b)
+Construct the “five number summary” for the points per game for the population, using the fivenum() function. Do the same for the sample. Give the interquartile range for each. Use the code chunk and answer space as before.
+
+```{r}
+
+```
+**ANSWER: **
+
+### Part (c)
+Use the boxplot() function to construct a boxplot of the points per game variable for the population. Include a title and labels for the appropriate axis (the arguments should be similar to the barplot from earlier).
+
+```{r}
+
+```
+
+### Part (f)
+Let's use the boxplot.stats() function, to get some additional information. "stats" in the output of this function gives the five values of each part of the box/whiskers: the "bottom whisker" value, Q1, med, Q2, and the "top whisker" value. The "out" in the output is where you can find each of the outliers.
+
+```{r}
+
+```
+
+Now we can answer the following questions (type your answers in the appropriate spaces, as before):
+
+How many outliers are there?
+
+**ANSWER: **
+
+Which player is the lowest scoring player that is considered an outlier?
+
+**ANSWER: **
+
+### Part (g)
+Create a boxplot of the points per game variable for the sample. Include a title and axis label, as before.
+
+```{r}
+
+```
+
+How many outliers are there (if any)?
+
+**ANSWER: **
+
+
+### Part (h)
+Use  the hist() function to create two histograms: one for the variable total rebounds per game (TRB) for the population, and one for the total rebounds per game of the sample. Include titles and axes labels, as before.
+
+```{r}
+
+```
+
+Describe the shape of each histogram.
+
+**ANSWER: **
