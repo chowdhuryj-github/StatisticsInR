@@ -1,12 +1,16 @@
 ---
-title: "Activity 1 - [INSERT YOUR NAME HERE]"
+title: "Activity 1: Salvin Chowdhury"
 date: 'Due Date: Febraury 5, 2025'
 output: html_notebook
 ---
 
-The file “Activity1.csv'” (found in Canvas) contains some data for the 574 players that played at least one game in the NBA during the 2023-2024 season (collected from basketball-reference.com).
+The file “Activity1.csv'” (found in Canvas) contains some data for the 574 players that played at least one game in the NBA 
+during the 2023-2024 season (collected from basketball-reference.com).
 
-If you make sure that the file is in the same folder as this markdown file, you should be able to use it with no problems as long as you run the chunk of code below. I've just named it "nba" for ease of use, but you can change that if you want to. I've also included some code to take a random sample of size 50, and called it "mysample" (again feel free to change the name if you want). You will need to use the sample in Problem 2.
+If you make sure that the file is in the same folder as this markdown file, you should be able to use it with no problems as
+long as you run the chunk of code below. I've just named it "nba" for ease of use, but you can change that if you want to. 
+I've also included some code to take a random sample of size 50, and called it "mysample" (again feel free to change the name if you want). 
+You will need to use the sample in Problem 2.
 
 ```{r}
 nba <- data.frame(read.csv("Activity1.csv"))
@@ -17,7 +21,8 @@ mysample <- nba[sample(nrow(nba), 50), ]
 ## Problem 1: Describing/Summarizing One Categorical Variable
 
 ### Part (a)
-Use the table() function to create what is essentially a frequency distribution for the position (Pos) variable. Assign this table the name "positions" and then view the table.
+- Use the table() function to create what is essentially a frequency distribution for the position (Pos) variable. 
+- Assign this table the name "positions" and then view the table.
 
 ```{r}
 Pos = nba$Pos
@@ -26,20 +31,48 @@ positions
 ```
 
 ### Part (b) 
-Use your result from part (a) to determine how many and what percent of NBA players are guards (both PG and SG are considered guards). Simply type your answer below, after "ANSWER:" but before the second "**". If you use R to help in your calculations, include the code you used in the following chunk.
+Use your result from part (a) to determine how many and what percent of NBA players are guards (both PG and SG are considered guards). 
+Simply type your answer below, after "ANSWER:" but before the second "**". 
+If you use R to help in your calculations, include the code you used in the following chunk.
 
 ```{r}
-#This chunk is here for any calculations if needed in part (b).
+# This chunk is here for any calculations if needed in part (b).
+
+# checking the type of data structure of positions
+class(positions)
+
+# converting from table to a dataframe
+positions_df <- as.data.frame(positions)
+positions_df
+
+# grabbing the PG & SG values from the dataframe
+pg_guards = positions_df[positions_df$Pos == "PG", "Freq"]
+dg_guards = positions_df[positions_df$Pos == "SG", "Freq"]
+
+# finding the total number of guards
+total_guards = pg_guards + dg_guards
+print(paste("Total Guards: ", total_guards))
+
+# finding the total number of NBA players
+total_players = sum(positions_df$Freq)
+print(paste("Total Players: ", total_players))
+
+# finding the percentage
+percentage = (total_guards / total_players) * 100
+print(paste("Percentage: ", percentage))
 
 ```
 
 
 **ANSWER: **
+ - The number of players that are guards are 242
+ - The percentage of players that are guards are 42.2%
 
 ### Part (c)
 Use the barplot() function to create a bar graph summarizing the position variable. Include a title and labels for each axis using the arguments like: main = "title", xlab = "x label", and ylab = "y label"
 
 ```{r}
+
 
 ```
 
