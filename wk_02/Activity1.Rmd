@@ -180,7 +180,7 @@ Use the boxplot() function to construct a boxplot of the points per game variabl
 points_table <- table(points_per_game)
 
 # creating the box plot
-boxplot(points_table, main = "Boxplot of Points Per Game",
+boxplot(points_per_game, main = "Boxplot of Points Per Game",
         ylab = "Points", col="red")
 
 ```
@@ -190,10 +190,13 @@ Let's use the boxplot.stats() function, to get some additional information. "sta
 
 ```{r}
 # retrieving the box plot statistics
-box_stats <- boxplot.stats(points_table)
+box_stats <- boxplot.stats(points_per_game)
 
 # printing out the statistics
 print(box_stats)
+
+# finding the player the lowest score
+nba[nba$PTS == 24.3, ]
 
 ```
 
@@ -202,17 +205,16 @@ Now we can answer the following questions (type your answers in the appropriate 
 How many outliers are there?
 
 **ANSWER:** <br>
-$out <br>
 points_per_game <br>
-  0   2   4 4.4   5 <br>
- 10  11  12  12   9
+ [1] 34.7 33.9 30.4 30.1 28.7 27.1 27.1 26.9 26.6 26.6 26.4 26.4 25.9 25.9 25.7 <br>
+[16] 25.7 25.6 25.1 24.7 24.3
 
-There are 10 outliers in total
+There are 20 outliers in total
 
 Which player is the lowest scoring player that is considered an outlier?
 
 **ANSWER:** <br>
-The player that scored 0 points
+Damian Lillard
 
 ### Part (g)
 Create a boxplot of the points per game variable for the sample. Include a title and axis label, as before.
@@ -234,13 +236,13 @@ Use  the hist() function to create two histograms: one for the variable total re
 
 ```{r}
 # histogram of population
-hist(nba$PTS, col="red", main="Histogram of Total Rebounds", xlab="Rebounds", 
+hist(nba$TRB, col="red", main="Histogram of Total Rebounds", xlab="Rebounds", 
     ylab="Frequency")
-    
+
 ```
 ```{r}
 # histogram of sample
-hist(mysample$PTS, col="red", main="Histogram of Total Rebounds (Sample)", xlab="Rebounds", 
+hist(mysample$TRB, col="red", main="Histogram of Total Rebounds (Sample)", xlab="Rebounds", 
     ylab="Frequency")
 
 ```
@@ -249,4 +251,4 @@ Describe the shape of each histogram.
 
 **ANSWER:** <br>
 - The shape of the population histogram is right-skewed and unimodal <br>
-- The shape of the sample histogram is bimodal
+- The shape of the sample histogram is right-skewed and unimodal
