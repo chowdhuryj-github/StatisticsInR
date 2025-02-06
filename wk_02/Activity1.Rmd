@@ -1,7 +1,7 @@
 ---
 title: "Activity 1: Salvin Chowdhury"
 date: 'Due Date: Febraury 5, 2025'
-output: html_document
+output: pdf_document
 ---
 
 The file “Activity1.csv'” (found in Canvas) contains some data for the 574 players that played at least one game in the NBA 
@@ -234,11 +234,14 @@ Use  the hist() function to create two histograms: one for the variable total re
 
 ```{r}
 # histogram of population
-hist(nba$PTS, col="red", main="Histogram of Total Rebounds", xlab="Rebounds", ylab="Frequency")
+hist(nba$PTS, col="red", main="Histogram of Total Rebounds", xlab="Rebounds", 
+    ylab="Frequency")
+    
 ```
 ```{r}
 # histogram of sample
-hist(mysample$PTS, col="red", main="Histogram of Total Rebounds (Sample)", xlab="Rebounds", ylab="Frequency")
+hist(mysample$PTS, col="red", main="Histogram of Total Rebounds (Sample)", xlab="Rebounds", 
+    ylab="Frequency")
 
 ```
 
