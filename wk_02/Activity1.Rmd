@@ -1,7 +1,7 @@
 ---
 title: "Activity 1: Salvin Chowdhury"
 date: 'Due Date: Febraury 5, 2025'
-output: html_notebook
+output: html_document
 ---
 
 The file “Activity1.csv'” (found in Canvas) contains some data for the 574 players that played at least one game in the NBA 
@@ -13,8 +13,13 @@ I've also included some code to take a random sample of size 50, and called it "
 You will need to use the sample in Problem 2.
 
 ```{r}
+# converting .csv file into a data frame
 nba <- data.frame(read.csv("Activity1.csv"))
+
+# setting the seed
 set.seed(77)
+
+# random sampling
 mysample <- nba[sample(nrow(nba), 50), ]
 ```
 
@@ -25,8 +30,13 @@ mysample <- nba[sample(nrow(nba), 50), ]
 - Assign this table the name "positions" and then view the table.
 
 ```{r}
+# picking out the positions column
 Pos = nba$Pos
+
+# converting the column into a table
 positions = table(Pos)
+
+# printing out the table
 positions
 ```
 
@@ -47,10 +57,10 @@ positions_df
 
 # grabbing the PG & SG values from the dataframe
 pg_guards = positions_df[positions_df$Pos == "PG", "Freq"]
-dg_guards = positions_df[positions_df$Pos == "SG", "Freq"]
+sg_guards = positions_df[positions_df$Pos == "SG", "Freq"]
 
 # finding the total number of guards
-total_guards = pg_guards + dg_guards
+total_guards = pg_guards + sg_guards
 print(paste("Total Guards: ", total_guards))
 
 # finding the total number of NBA players
@@ -64,15 +74,19 @@ print(paste("Percentage: ", percentage))
 ```
 
 
-**ANSWER: **
- - The number of players that are guards are 242
+**ANSWER:** <br>
+ - The number of players that are guards are 242 <br>
  - The percentage of players that are guards are 42.2%
 
 ### Part (c)
 Use the barplot() function to create a bar graph summarizing the position variable. Include a title and labels for each axis using the arguments like: main = "title", xlab = "x label", and ylab = "y label"
 
 ```{r}
-
+# creating a bar plot
+barplot(positions, col="red",
+        main = "Bar Graph of Positions",
+        xlab = "positions", ylab = "frequency",
+        border = "black")
 
 ```
 
@@ -83,22 +97,91 @@ Use the barplot() function to create a bar graph summarizing the position variab
 Calculate the mean and standard deviation of the points per game (PTS) variable for the population. Do the same for the sample. Use the code chunk below for calculations, and type your answers as one or more sentences in the space provided, as before.
 
 ```{r}
+# picking out the PTS data 
+points_per_game = nba$PTS
+
+# figuring out the class
+class(points_per_game)
+
+# count of values of points
+cat("Number of Values of PTS: ", length(points_per_game), "\n")
+
+# count of values of positions
+cat("Number of Positions: ", length(Pos), "\n")
+
+# calculating the mean
+cat("The PTS Mean: ", mean(points_per_game), "\n")
+
+# calculating the standard deviation 
+cat("The PTS Standard Deviation: ", sd(points_per_game), "\n")
+
+# checking the type of the sample
+class(mysample)
+
+# finding the mean from the sample
+nba_pts_mean <- mean(mysample$PTS, na.rm = TRUE)
+
+# finding the standard deviation from the sample
+nba_pts_sd <- sd(mysample$PTS, na.rm = TRUE)
+
+# printing out mean and standard deviation
+cat("The Sample Mean: ", nba_pts_mean, "\n")
+cat("The Sample SD: ", nba_pts_sd, "\n")
 
 ```
-**ANSWER: **
+**ANSWER:** <br>
+- The PTS Mean is 8.41 <br>
+- The PTS Standard Deviation is 6.78 <br>
+- The Sample Mean is 10.196 <br>
+- The Sample Standard Deviation is 6.6
 
 ### Part (b)
 Construct the “five number summary” for the points per game for the population, using the fivenum() function. Do the same for the sample. Give the interquartile range for each. Use the code chunk and answer space as before.
 
 ```{r}
+# storing the summaries
+population_summary <- fivenum(points_per_game)
+sample_summary <- fivenum(mysample$PTS)
+
+# printing out the five number summary for the population
+cat("The Five Number Summary (Population): ", population_summary, "\n")
+
+# printing out the five number summary for the sample
+cat("The Five Number Summary (Sample): ", sample_summary, "\n")
+
+# finding the upper and lower quartile in population summary
+population_lower_quartile <- population_summary[2]
+population_upper_quartile <- population_summary[4]
+
+# finding the upper and lower quartile in sample summary
+sample_lower_quartile <- sample_summary[2]
+sample_upper_quartile <- sample_summary[4]
+
+# finding the interquartile range in population
+population_interquartile = population_upper_quartile - population_lower_quartile
+cat("Interquartile Range of Population: ", population_interquartile, "\n")
+
+# finding the interquartile range in sample
+sample_interquartile = sample_upper_quartile - sample_lower_quartile
+cat("Interquartile Range of Sample: ", sample_interquartile, "\n")
 
 ```
-**ANSWER: **
+**ANSWER:** <br>
+- Interquartile range of Population: 8.3 <br>
+- Interquartile range of Sample: 11
+
 
 ### Part (c)
 Use the boxplot() function to construct a boxplot of the points per game variable for the population. Include a title and labels for the appropriate axis (the arguments should be similar to the barplot from earlier).
 
 ```{r}
+
+# creating a points table
+points_table <- table(points_per_game)
+
+# creating the box plot
+boxplot(points_table, main = "Boxplot of Points Per Game",
+        ylab = "Points", col="red")
 
 ```
 
@@ -106,6 +189,11 @@ Use the boxplot() function to construct a boxplot of the points per game variabl
 Let's use the boxplot.stats() function, to get some additional information. "stats" in the output of this function gives the five values of each part of the box/whiskers: the "bottom whisker" value, Q1, med, Q2, and the "top whisker" value. The "out" in the output is where you can find each of the outliers.
 
 ```{r}
+# retrieving the box plot statistics
+box_stats <- boxplot.stats(points_table)
+
+# printing out the statistics
+print(box_stats)
 
 ```
 
@@ -113,31 +201,49 @@ Now we can answer the following questions (type your answers in the appropriate 
 
 How many outliers are there?
 
-**ANSWER: **
+**ANSWER:** <br>
+$out <br>
+points_per_game <br>
+  0   2   4 4.4   5 <br>
+ 10  11  12  12   9
+
+There are 10 outliers in total
 
 Which player is the lowest scoring player that is considered an outlier?
 
-**ANSWER: **
+**ANSWER:** <br>
+The player that scored 0 points
 
 ### Part (g)
 Create a boxplot of the points per game variable for the sample. Include a title and axis label, as before.
 
 ```{r}
+boxplot(mysample$PTS, main = "Boxplot of Points Per Game (Sample)",
+        ylab = "Points", col="red")
 
 ```
 
 How many outliers are there (if any)?
 
-**ANSWER: **
+**ANSWER:** <br>
+There are no outliers.
 
 
 ### Part (h)
 Use  the hist() function to create two histograms: one for the variable total rebounds per game (TRB) for the population, and one for the total rebounds per game of the sample. Include titles and axes labels, as before.
 
 ```{r}
+# histogram of population
+hist(nba$PTS, col="red", main="Histogram of Total Rebounds", xlab="Rebounds", ylab="Frequency")
+```
+```{r}
+# histogram of sample
+hist(mysample$PTS, col="red", main="Histogram of Total Rebounds (Sample)", xlab="Rebounds", ylab="Frequency")
 
 ```
 
 Describe the shape of each histogram.
 
-**ANSWER: **
+**ANSWER:** <br>
+- The shape of the population histogram is right-skewed and unimodal <br>
+- The shape of the sample histogram is bimodal
