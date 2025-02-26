@@ -1,0 +1,417 @@
+---
+title: "Activity 3 - Salvin Chowdhury"
+date: 'Due Date: Febraury 26, 2025'
+output: html_notebook
+---
+
+## Problem 1: Creating a PMF, CDF, and Calculating Expected Value and Standard Deviation (Discrete Random Variable).
+
+Suppose we randomly ask 250 students about the number of pets they have and find the following: 
+
+- 46 have no pets
+- 107 have one pet
+- 58 have two pet
+- 30 have three pets
+- 9  have four pets
+
+Consider the random variable, *X*, that is the number of pets a student has.
+
+### Part (a)
+
+Create a PMF "table" using the data above by doing the following:
+
+- Create a vector for the possible values of *X* and call it "X"
+- Create a vector for the probabilities of each of these values and call it "p"
+- Bind them into a single object using the rbind() function
+
+```{r}
+
+# setting up a vector for possivle values of X
+X <- c(0, 1, 2, 3, 4)
+
+# displaying the vector for possible values of X
+X
+
+# finding the total number of pets
+total_pets = 46 + 107 + 58 + 30 + 9
+print(paste("Total Number of Pets: ", total_pets))
+
+# calculating all the probabilities
+no_pets_probability = 46 / total_pets
+one_pet_probability = 107 / total_pets
+two_pet_probability = 58 / total_pets
+three_pet_proability = 30 / total_pets
+four_pet_probability = 9 / total_pets
+
+# setting up a vector for probabilities
+p <- c(no_pets_probability, one_pet_probability, two_pet_probability, three_pet_proability, four_pet_probability)
+
+# displaying the vector for probabilities
+p
+
+# binding both vectors into a single object
+PMFPets = rbind(X, p)
+print(PMFPets)
+
+
+```
+
+
+### Part (b)
+
+Choose one (or both) of the following to complete:
+
+- Create a histogram-like line graph for the PMF using the plot() function. Be sure to specify each of the following arguments to get the correct plot:
+x, y, type. Your graph should also have an appropriate title and axes labels.
+
+```{r}
+
+# saving the plot
+png("C:/GitHub/StatisticsInR/wk_04/plots/PlotPets.png", width=800, height=600)
+
+# the plottng of PMF in terms of numbers of pets vs probability
+plot(X, p, type='h', main="Probability Mass Function of Number of Pets", xlab="Number of Pets", ylab="Probability", lwd=15)
+
+# saving the plot
+dev.off()
+
+
+```
+
+- Create a bar graph for the PMF using the barplot() function. To make sure the correct values display on the bottom, you can specify the names.arg 
+- argument or assign the appropriate vector to names(p) before plotting. You graph should have an appropriate title and axes labels.
+
+```{r}
+
+# saving the plot
+png("C:/GitHub/StatisticsInR/wk_04/plots/BarPlot.png", width=800, height=600)
+
+# the plotting of a bar plot 
+barplot(p, col="blue", main="Bar Graph of Pet Owners", xlab="Number of Pets", ylab="Probability", ylim=c(0, 0.5))
+
+# building a x-axis
+axis(1, at = 1:length(X), labels = X)
+
+# saving the plot
+dev.off()
+
+
+```
+
+
+### Part (c) 
+
+Create a step graph for the CDF using the plot() function. Be sure to specify the x, y, and type arguments. Note, this won't be perfect,
+ but it's about as good as we can do without getting "too fancy" with code. Your graph should have an appropriate title and axes labels.
+
+*Hint: the cumulative sum function cumsum() may be helpful here!*
+
+```{r}
+
+# saving the plot
+png("C:/GitHub/StatisticsInR/wk_04/plots/StepPlot.png", width=800, height=600)
+
+# the cumulative sum function
+sum = cumsum(p)
+
+# the plotting of a step plot
+plot(X, sum, type="s", main="Step Graph of Number of Pets vs Probability", xlab="Number of Pets", ylab="Probability")
+
+# saving the plot
+dev.off()
+
+
+```
+
+### Part (d)
+
+Find the expected value and standard deviation of *X*.
+
+*Hint: it may be best to just use R as a calculator here, to make sure you get the correct results.*
+
+```{r}
+
+# viewing the probability table
+print(PMFPets)
+
+# finding the expected value sing sum()
+expected_value_sum = sum(PMFPets[1,] * PMFPets[2, ])
+print(paste("Expected Value using sum(): ", expected_value_sum))
+
+# finding the expected value
+expected_value <- (PMFPets[1, 1] * PMFPets[2, 1]) + (PMFPets[1, 2] * PMFPets[2, 2]) + (PMFPets[1, 3] * PMFPets[2, 3]) + (PMFPets[1, 4] * PMFPets[2, 4]) +
+(PMFPets[1, 5] * PMFPets[2, 5])
+print(paste("Expected Value Manual: ", expected_value))
+
+# finding the sum of squares
+sum_of_squares <- (PMFPets[1, 1]^2 * PMFPets[2, 1]) + (PMFPets[1, 2]^2 * PMFPets[2, 2]) + (PMFPets[1, 3]^2 * PMFPets[2, 3]) + (PMFPets[1, 4]^2 * PMFPets[2, 4])
++ (PMFPets[1, 5]^2 * PMFPets[2, 5])
+print(paste("Sum of Squares: ", sum_of_squares))
+
+# calculating the standard deviation and variance
+variance <- sum_of_squares - (expected_value^2)
+standard_deviation <- sqrt(variance)
+print(paste("Standard Deviation Manual: ", standard_deviation))
+
+
+```
+
+
+## Problem 2: Coin Flip Simulation
+
+### Part (a)
+
+Suppose we flip a fair coin 20 times, and denote by *X* the random variable which is the number of heads. List all possible outcomes of *X*.
+
+*Hint: "m:n" outputs a vector of the integers between a and b*
+
+```{r}
+
+X <- 0:20
+print(X)
+
+
+```
+
+### Part (b)
+
+Use the the rbinom() function to simulate flipping a fair coin 20 times and recording the number of heads. To avoid this result changing if you run 
+the code chunk more than once, first, pick your favorite (whole) number and use the set.seed() function with that number as the input.
+
+```{r}
+
+# setting the seed for reproducibility
+set.seed(20)
+
+# calculating the binomial distribution
+# parameters: simulations, size, probability
+coin_flip <- rbinom(1, 20, 0.5)
+print(coin_flip)
+
+
+```
+
+### Part(c)
+
+Use the dbinom() function to find the probability of obtaining the exact number of heads you got in part (b).
+
+```{r}
+
+# the binomial probability mass function
+# note: I got 13 heads in the previous cell
+probability_d <- dbinom(13, 20, 0.5)
+print(paste("Probability of getting exactly13 heads: ", probability_d))
+
+
+```
+
+
+### Part (d)
+
+Use the pbinom() function to find the probability of obtaining fewer heads than you got in part (b).
+
+```{r}
+
+# the binomial cumulative distribution function
+probability_p <- pbinom(12, 20, 0.5)
+print(paste("Probability of getting fewer than 13 heads: ", probability_p))
+
+
+```
+
+
+### Part (e)
+
+Find the probability of obtaining more heads than you got in part (b).
+
+```{r}
+
+# probability of more than 13 heads
+probability_thirteen <- pbinom(13, 20, 0.5)
+probability_greater_than_thirteen <- 1 - probability_thirteen
+print(paste("Probability of obtaining more heads: ", probability_greater_than_thirteen))
+
+
+```
+
+
+### Part (f)
+
+Now use the rbinom() function to simulate the process repeating part (b) 100 times. Use the set.seed() function that you used earlier here just to make 
+sure things don't change when running this code multiple times, and I would recommend assigning this simulation a name, such as "sim1."
+
+*Note: For clarity, you are simulating the experiment of 20 coin flips 100 times, not flipping 100 coins.*
+
+```{r}
+
+# setting the seed for reproducibility
+set.seed(20)
+
+# running the first simulation
+simulation_one <- rbinom(100, 20, 0.5)
+print(simulation_one)
+
+
+```
+
+
+### Part (g)
+
+Use the table() function to create a frequency table for the result from part (f), then use this to create a PMF table.
+
+```{r}
+
+# the frequency table 
+frequency_table <- table(simulation_one)
+print(frequency_table)
+
+# the probability mass function table
+pmf_table <- frequency_table / sum(frequency_table)
+print(pmf_table)
+
+# checking if all the probabilities add up to 1
+sum_of_probability = sum(pmf_table[])
+print(paste("Sum of Probability: ", sum_of_probability))
+
+
+```
+
+### Part (h)
+
+Create a plot (a line graph or bar graph, depending on your preference) based on the table in part (g). Your plot should have an appropriate title and axes 
+labels.
+
+```{r}
+
+# saving the plot
+png("C:/GitHub/StatisticsInR/wk_04/plots/LinePlot.png", width=800, height=600)
+
+# the first row of the pmf table
+outcomes <- as.numeric(names(pmf_table))
+
+# making a line plot
+plot(outcomes, pmf_table, type="l", 
+main="Line Graph of Probability Mass Function of 100 Coin Tosses", xlab="Number of Heads", ylab="Probability")
+
+# saving the plot
+dev.off()
+
+
+```
+
+### Part (i)
+
+Create a plot which is based on running this simulation 1000 times instead of 100 times. Do the same for 10000 times. Again, make sure to use the set.seed()
+ function as before to ensure your results don't change if you run the code more than once. These plots should have appropriate title and axes labels.
+
+```{r}
+
+# setting the seed for reproducibility
+set.seed(20)
+
+# running the second simulation
+simulation_two <- rbinom(1000, 20, 0.5)
+print(simulation_one)
+
+# the frequency table 
+frequency_table_two <- table(simulation_two)
+print(frequency_table_two)
+
+# the probability mass function table
+pmf_table_two <- frequency_table_two / sum(frequency_table_two)
+print(pmf_table_two)
+
+# checking if all the probabilities add up to 1
+sum_of_probability_two = sum(pmf_table_two[])
+print(paste("Sum of Probability: ", sum_of_probability_two))
+
+# saving the plot
+png("C:/GitHub/StatisticsInR/wk_04/plots/LinePlot1000.png", width=800, height=600)
+
+# the first row of the pmf table
+outcomes_two <- as.numeric(names(pmf_table_two))
+
+# making a line plot
+plot(outcomes_two, pmf_table_two, type="l", 
+main="Line Graph of Probability Mass Function of 1000 Coin Tosses", xlab="Number of Heads", ylab="Probability")
+
+# saving the plot
+dev.off()
+
+
+```
+
+What do you notice? (Type your answer below)
+
+**Answer:**
+We get a nornmal distribution shaped curve.
+
+## Problem 3: Poisson Distribution
+
+The probability distribution over the number of earthquakes in a year in a particular area is usually modeled using a Poisson distribution. This is because, although earthquakes occur randomly over a long period, the number of earthquakes over time approaches a constant rate. Suppose, on average, there are 7 earthquakes per month in a certain region.
+
+### Part (a)
+
+Use the dpois() function to find the probability that there are 6 earthquakes in the next month.
+
+```{r}
+
+
+
+
+```
+
+### Part (b)
+
+Use the ppois() function to find the probability that there are 4 or fewer earthquakes in the next month. Confirm this result by summing up results of the dpois() function.
+
+```{r}
+
+```
+
+
+### Part (c)
+
+Find the probability that there are 9 or more earthquakes in the next month.
+
+```{r}
+
+```
+
+### Part (d) 
+
+Simulate the number of earthquakes per month over the next 10 **years** using the rpois() function. Be sure to use the set.seed() function as you did earlier and call this something like "sim2" so it is easy to use the exact result you got in the next part.
+
+```{r}
+
+```
+
+### Part (e)
+
+Create a PMF table for your result from part (d) and use it to create a plot. Your plot should have an appropriate title and axes labels.
+
+```{r}
+
+```
+
+### Part (f)
+
+Repeat the simulation from part (d) but over the next 100 years instead. Be sure to use the set.set() function as before and call it something like "sim3." Then use this to create a plot similar to that of part (e). Your plot should have an appropriate title and axes labels.
+
+```{r}
+
+```
+
+### Part (g)
+
+Repeat the simulation once more but over the next 1000 years instead. Again, be sure to use the set.seed() function and give the simulation a name like "sim4." Then, use this to create a plot as before. Your plot should have an appropriate title and axes labels.
+
+```{r}
+
+```
+
+### Part (h)
+
+What do you notice about these simulations/plots? Type your answer below.
+
+**Answer: **
