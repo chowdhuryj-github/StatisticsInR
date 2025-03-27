@@ -44,7 +44,8 @@ three_pet_proability = 30 / total_pets
 four_pet_probability = 9 / total_pets
 
 # setting up a vector for probabilities
-p <- c(no_pets_probability, one_pet_probability, two_pet_probability, three_pet_proability, four_pet_probability)
+p <- c(no_pets_probability, one_pet_probability, two_pet_probability, three_pet_proability,
+four_pet_probability)
 
 # displaying the vector for probabilities
 p
@@ -66,14 +67,16 @@ x, y, type. Your graph should also have an appropriate title and axes labels.
 
 ```{r}
 
-# saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/PlotPets.png", width=800, height=600)
+# # saving the plot
+# png("C:/GitHub/StatisticsInR/wk_04/plots/PlotPets.png", width=800, height=600)
 
 # the plottng of PMF in terms of numbers of pets vs probability
-plot(X, p, type='h', main="Probability Mass Function of Number of Pets", xlab="Number of Pets", ylab="Probability", lwd=15)
+plot(X, p, type='h', main="Probability Mass Function of Number of Pets", 
+xlab="Number of Pets", 
+ylab="Probability", lwd=15)
 
-# saving the plot
-dev.off()
+# # saving the plot
+# dev.off()
 
 
 ```
@@ -83,17 +86,18 @@ dev.off()
 
 ```{r}
 
-# saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/BarPlot.png", width=800, height=600)
+# # saving the plot
+# png("C:/GitHub/StatisticsInR/wk_04/plots/BarPlot.png", width=800, height=600)
 
 # the plotting of a bar plot 
-barplot(p, col="blue", main="Bar Graph of Pet Owners", xlab="Number of Pets", ylab="Probability", ylim=c(0, 0.5))
+barplot(p, col="blue", main="Bar Graph of Pet Owners", xlab="Number of Pets", 
+ylab="Probability", ylim=c(0, 0.5))
 
 # building a x-axis
 axis(1, at = 1:length(X), labels = X)
 
-# saving the plot
-dev.off()
+# # saving the plot
+# dev.off()
 
 
 ```
@@ -108,17 +112,19 @@ Create a step graph for the CDF using the plot() function. Be sure to specify th
 
 ```{r}
 
-# saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/StepPlot.png", width=800, height=600)
+# # saving the plot
+# png("C:/GitHub/StatisticsInR/wk_04/plots/StepPlot.png", width=800, height=600)
 
 # the cumulative sum function
 sum = cumsum(p)
 
 # the plotting of a step plot
-plot(X, sum, type="s", main="Step Graph of Number of Pets vs Probability", xlab="Number of Pets", ylab="Probability")
+plot(X, sum, type="s", main="Step Graph of Number of Pets vs Probability", 
+xlab="Number of Pets", 
+ylab="Probability")
 
-# saving the plot
-dev.off()
+# # saving the plot
+# dev.off()
 
 
 ```
@@ -139,12 +145,14 @@ expected_value_sum = sum(PMFPets[1,] * PMFPets[2, ])
 print(paste("Expected Value using sum(): ", expected_value_sum))
 
 # finding the expected value
-expected_value <- (PMFPets[1, 1] * PMFPets[2, 1]) + (PMFPets[1, 2] * PMFPets[2, 2]) + (PMFPets[1, 3] * PMFPets[2, 3]) + (PMFPets[1, 4] * PMFPets[2, 4]) +
+expected_value <- (PMFPets[1, 1] * PMFPets[2, 1]) + (PMFPets[1, 2] * PMFPets[2, 2]) + 
+(PMFPets[1, 3] * PMFPets[2, 3]) + (PMFPets[1, 4] * PMFPets[2, 4]) +
 (PMFPets[1, 5] * PMFPets[2, 5])
 print(paste("Expected Value Manual: ", expected_value))
 
 # finding the sum of squares
-sum_of_squares <- (PMFPets[1, 1]^2 * PMFPets[2, 1]) + (PMFPets[1, 2]^2 * PMFPets[2, 2]) + (PMFPets[1, 3]^2 * PMFPets[2, 3]) + (PMFPets[1, 4]^2 * PMFPets[2, 4])
+sum_of_squares <- (PMFPets[1, 1]^2 * PMFPets[2, 1]) + (PMFPets[1, 2]^2 * PMFPets[2, 2]) + 
+(PMFPets[1, 3]^2 * PMFPets[2, 3]) + (PMFPets[1, 4]^2 * PMFPets[2, 4])
 + (PMFPets[1, 5]^2 * PMFPets[2, 5])
 print(paste("Sum of Squares: ", sum_of_squares))
 
@@ -278,23 +286,27 @@ print(paste("Sum of Probability: ", sum_of_probability))
 
 ### Part (h)
 
-Create a plot (a line graph or bar graph, depending on your preference) based on the table in part (g). Your plot should have an appropriate title and axes 
-labels.
+Create a plot (a line graph or bar graph, depending on your preference) based on the table in part (g). Your plot 
+should have an appropriate title and axes labels.
 
 ```{r}
 
 # saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/LinePlot.png", width=800, height=600)
+# png("C:/GitHub/StatisticsInR/wk_04/plots/BarPlot.png", width=800, height=600)
 
 # the first row of the pmf table
 outcomes <- as.numeric(names(pmf_table))
 
-# making a line plot
-plot(outcomes, pmf_table, type="l", 
-main="Line Graph of Probability Mass Function of 100 Coin Tosses", xlab="Number of Heads", ylab="Probability")
+# making a histogram plot
+barplot(frequency_table, col="purple", main="Bar Graph of 100 Coin Tosses", 
+xlab="Number of Heads", ylab="Frequency")
+
+# plot(outcomes, pmf_table, type="h", 
+# main="Histogram of Probability Mass Function of 100 Coin Tosses", xlab="Number of Heads",
+# ylab="Probability", lwd=5)
 
 # saving the plot
-dev.off()
+# dev.off()
 
 
 ```
@@ -325,18 +337,19 @@ print(pmf_table_two)
 sum_of_probability_two = sum(pmf_table_two[])
 print(paste("Sum of Probability: ", sum_of_probability_two))
 
-# saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/LinePlot1000.png", width=800, height=600)
+# # saving the plot
+# png("C:/GitHub/StatisticsInR/wk_04/plots/LinePlot1000.png", width=800, height=600)
 
 # the first row of the pmf table
 outcomes_two <- as.numeric(names(pmf_table_two))
 
 # making a line plot
 plot(outcomes_two, pmf_table_two, type="l", 
-main="Line Graph of Probability Mass Function of 1000 Coin Tosses", xlab="Number of Heads", ylab="Probability")
+main="Line Graph of Probability Mass Function of 1000 Coin Tosses", 
+xlab="Number of Heads", ylab="Probability")
 
-# saving the plot
-dev.off()
+# # saving the plot
+# dev.off()
 
 
 ```
@@ -378,7 +391,8 @@ the dpois() function.
 probability_four_or_fewer <- ppois(4, 7)
 
 # cross-checking using dpois()
-probability_using_dpois <- dpois(0, 7) + dpois(1, 7) + dpois(2, 7) + dpois(3, 7) + dpois(4, 7)
+probability_using_dpois <- dpois(0, 7) + dpois(1, 7) + dpois(2, 7) + dpois(3, 7) + 
+dpois(4, 7)
 
 print(paste("4 or fewer using ppois(): ", probability_four_or_fewer))
 print(paste("4 or fewer using dpois(): ", probability_using_dpois))
@@ -425,8 +439,9 @@ Create a PMF table for your result from part (d) and use it to create a plot. Yo
 frequency_table_three  <- table(simulation_three)
 print(frequency_table_three)
 
-# saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/10YearsOfEarthquakes.png", width=800, height=600)
+# # saving the plot
+# png("C:/GitHub/StatisticsInR/wk_04/plots/10YearsOfEarthquakes.png", width=800, 
+# height=600)
 
 # making a line plot
 # creating a bar plot
@@ -434,8 +449,8 @@ barplot(frequency_table_three, col="red",
         main = "10 Years of Earthquakes",
         xlab = "Earthquakes", ylab = "Frequency")
 
-# saving the plot
-dev.off()
+# # saving the plot
+# dev.off()
 
 
 ```
@@ -457,8 +472,9 @@ simulation_four = rpois(1200, 7)
 frequency_table_four  <- table(simulation_four)
 print(frequency_table_four)
 
-# saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/100YearsOfEarthquakes.png", width=800, height=600)
+# # saving the plot
+# png("C:/GitHub/StatisticsInR/wk_04/plots/100YearsOfEarthquakes.png", width=800, 
+# height=600)
 
 # making a line plot
 # creating a bar plot
@@ -466,8 +482,8 @@ barplot(frequency_table_four, col="red",
         main = "100 Years of Earthquakes",
         xlab = "Earthquakes", ylab = "Frequency")
 
-# saving the plot
-dev.off()
+# # saving the plot
+# dev.off()
 
 
 ```
@@ -489,8 +505,9 @@ simulation_five = rpois(12000, 7)
 frequency_table_five  <- table(simulation_five)
 print(frequency_table_five)
 
-# saving the plot
-png("C:/GitHub/StatisticsInR/wk_04/plots/1000YearsOfEarthquakes.png", width=800, height=600)
+# # saving the plot
+# png("C:/GitHub/StatisticsInR/wk_04/plots/1000YearsOfEarthquakes.png", width=800, 
+# height=600)
 
 # making a line plot
 # creating a bar plot
@@ -498,8 +515,8 @@ barplot(frequency_table_five, col="red",
         main = "1000 Years of Earthquakes",
         xlab = "Earthquakes", ylab = "Frequency")
 
-# saving the plot
-dev.off()
+# # saving the plot
+# dev.off()
 
 
 ```
@@ -509,4 +526,5 @@ dev.off()
 What do you notice about these simulations/plots? Type your answer below.
 
 **Answer:**
-As the number of years increases, the shape of the bar plots are of a normal distribution and is uni-modal, however, they become increasingly right
+As the number of years increases, the shape of the bar plots are of a normal distribution and is uni-modal, 
+however, they become increasingly right skewed.

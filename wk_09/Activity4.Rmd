@@ -1,0 +1,39 @@
+---
+title: "Activity 3 - Salvin Chowdhury"
+date: 'Due Date: Febraury 26, 2025'
+output: html_notebook
+---
+
+## Problem 1: Use R to compute the following probabilities
+
+```{r}
+p1 <- pnorm(1.76)
+p2 <- pnorm(1.23)
+
+probability <- p1 - p2
+print(probability)
+
+```
+
+```{r}
+p1 <- pnorm(1.88)
+p2 <- pnorm(-1.14)
+
+probability <- p1 - p2
+print(probability)
+
+```
+
+```{r}
+p1 <- pnorm(-0.51)
+print(p1)
+```
+
+```{r}
+p1 <- pnorm(8, 7.5, 1.1)
+p2 <- pnorm(6.7, 7.5, 1.1)
+
+probability <- p1 - p2
+print(probability)
+
+```
