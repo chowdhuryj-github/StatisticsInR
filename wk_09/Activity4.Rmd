@@ -37,3 +37,39 @@ probability <- p1 - p2
 print(probability)
 
 ```
+
+```{r}
+p1 <- pnorm(6.25, 7.5, 1.1)
+print(p1)
+
+```
+
+```{r}
+p1 <- pnorm(8.75, 7.5, 1.1)
+p2 <- 1 - p1
+
+print(p2)
+```
+
+```{r}
+p1 <- pexp(5, rate = 1/12)
+print(p1)
+```
+
+```{r}
+p1 <- pexp(25, 1/12)
+p2 <- 1 - p1
+print(p2)
+```
+
+```{r}
+p1 <- pexp(15, 1/12)
+p2 <- pexp(10, 1/12)
+probability <- p1 - p2
+print(probability)
+```
+
+```{r}
+p1 <- qnorm(0.95, 7.5, 1.1)
+print(p1)
+```
