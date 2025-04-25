@@ -1,0 +1,84 @@
+---
+title: "Activity 6 - [INSERT YOUR NAME HERE]"
+date: 'Due Date: April 30, 2025'
+output: html_notebook
+---
+
+## Problem 1:
+A school counselor suspects that students' test scores may be affected by the site at which they take the test. An independent random sample of 31 test scores are collected from Test Center A and 40 from Test Center B. You will be conducting a hypothesis test with significance level 0.05 to determine if there is a difference in mean scores between the two test centers. The data is recorded in "Activity6ExamScores.csv" which can be found in Canvas. Be sure to run the code chunk below so that you can use the csv file within this markdown file.
+
+```{r}
+ExamScores <- read.csv("Activity6ExamScores.csv")
+```
+
+### (a) First, determine the null and alternative hypotheses.
+**Answer for (a):**
+
+### (b) Take a look at the ExamScores data. You might notice that in its current state, performing any relevant calculations might not be so easy... To fix this, let's make two new datasets (one for each test center) using the subset() function - be sure to assign these as objects so you can continue to work with them. This function really just needs two inputs - the data you want to subset, and a logical expression indicating which rows to keep. 
+*Note that when working with strings in R, be sure to put the string in between two quotation marks. Also note that the syntax for checking whether two objects are equal in R is a double equals sign "==". This step may require some "trial and error" - try a few ideas out and discuss with your neighbors first. Then, if you're still stuck of course I'll be happy to help you figure it out*
+
+```{r}
+# code for part (b)
+
+```
+
+### (c) Now you're ready to perform the hypothesis test. You can do this in more of "manual" way (calculating the test statistic and degrees of freedom, and then using that to find the P-value), or by using the t.test() function to do this all at once - the choice is up to you.
+
+```{r}
+# code for part (c)
+
+```
+
+### (d) Based on your result from part (c), is the null hypothesis rejected? State a conclusion/interpretation of your results in the context of this problem.
+
+**Answer for (d):**
+
+## Problem 2
+The Deloitte employment survey asked a sample of HR executives how their company planned to change its workforce over the next 12 months. A categorical response variable showed the following three options: Add employees, No change, and Lay off employees. Another categorical variable indicated if the company was private or public. A researcher is interested in finding out whether the percentage of private companies that plan to add employees is higher than the percentage of public companies that wish to do so. We will investigate this using a hypothesis test with significance level 0.01. Sample data for 180 companies are recorded in "Activity6WorkforcePlan.csv" which can be found in Canvas. Be sure to run the code chunk below so that you can use the csv file within this markdown file.
+
+```{r}
+WorkforcePlan <- read.csv("Activity6WorkforcePlan.csv")
+```
+
+
+### (a) State the null and alternative hypotheses.
+**Answer for (a):**
+
+### (b) What are each of the sample sizes and proportions in question (that is, m, n, and the two "phats"). Hint: using the table() function on each of the columns of your dataset may help you here (although this is certainly not the only method to help obtain this information).
+
+```{r}
+# code for part (b)
+
+```
+
+**Answer for (b):**
+
+### (c) Use the prop.test() function to find the test statistic and P-value.
+*You will need the following arguments: x, n, alternative, conf.level, correct. x is a vector of the number of successes from each sample. n is a vector of the number of trials in each sample. alternative and conf.level are just like in the t.test function. Use correct = FALSE as the final argument.*
+
+```{r}
+# code for part (c)
+
+```
+
+### (d) Based on your result from part (c), is the null hypothesis rejected? State a conclusion/interpretation of your results in the context of this problem.
+**Answer for (d):**
+
+## Problem 3
+Thirty cars were equipped with radial tires and driven over a test course. Then the same 30 cars (with the same drivers) were equipped with regular belted tires and driven over the same course. After each run, the cars’ gas economy (in km/l) was measured. We wish to determine if there is evidence that radial tires produce better fuel economy than regular belted tires. We will do so by performing a paired t-test on the difference of means. The relevant data is contained in "Activity6Tires.csv" which can be found in Canvas. Be sure to run the code chunk below so that you can use the csv file within this markdown file.
+
+```{r}
+Tires <- read.csv("Activity6Tires.csv")
+```
+
+### (a) Consider the "D_i" values as radial fuel economy - belted fuel economy. State the null and alternative hypotheses.
+**Answer for (a):**
+
+### (b) Use the t.test function to find the test statistic and P-value (be sure to specify the appropriate arguments in the function).
+```{r}
+# code for (b)
+
+```
+
+### (c) Based on your result from part (b), is the null hypothesis rejected? State a conclusion/interpretation of your results in the context of this problem.
+**Answer for part (c):**
