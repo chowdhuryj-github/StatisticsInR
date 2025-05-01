@@ -3,8 +3,10 @@ setwd("C:/Users/YourName/Documents")
 C:/GitHub/StatisticsInR/wk_12
 
 # for html documents
-Rscript -e "rmarkdown::render('Activity5.Rmd', output_format = 'html_document')"
+Rscript -e "rmarkdown::render('C:/GitHub/StatisticsInR/wk_14/Activity 6.Rmd', output_format = 'html_document')"
 
 # for pdf documents
 Rscript -e "rmarkdown::render('Activity5.Rmd', output_format = 'pdf_document')"
 Rscript -e "rmarkdown::render('Activity3.Rmd')"
+
+C:/GitHub/StatisticsInR/wk_14
