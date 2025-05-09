@@ -3,7 +3,7 @@ setwd("C:/Users/YourName/Documents")
 C:/GitHub/StatisticsInR/wk_12
 
 # for html documents
-Rscript -e "rmarkdown::render('C:/GitHub/StatisticsInR/wk_14/Activity 6.Rmd', output_format = 'html_document')"
+Rscript -e "rmarkdown::render('C:/GitHub/StatisticsInR/wk_15/Activity7.Rmd', output_format = 'html_document')"
 
 
 # for pdf documents

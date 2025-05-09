@@ -28,7 +28,7 @@ Finally, take a look at the summary of the model, as this will be useful going f
 # code for part (a)
 
 # saving the plot
-png("C:/GitHub/StatisticsInR/wk_15/plots/mpg_vs_weight.png", width = 800, height = 600)
+# png("C:/GitHub/StatisticsInR/wk_15/plots/mpg_vs_weight.png", width = 800, height = 600)
 
 # combined mpg vs weight
 plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
@@ -38,7 +38,7 @@ plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
      pch = 19, col = "darkgreen")
 
 # saving the plot
-dev.off()
+# dev.off()
 
 
 ```
@@ -49,7 +49,7 @@ dev.off()
 model <- lm(COMBINED.MPG.2015 ~ CURB.WEIGHT.2015, data = mpgdata)
 
 # saving the plot
-png("C:/GitHub/StatisticsInR/wk_15/plots/mpg_vs_weight_regression.png", width = 800, height = 600)
+# png("C:/GitHub/StatisticsInR/wk_15/plots/mpg_vs_weight_regression.png", width = 800, height = 600)
 
 # producing a new scatter plot
 plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
@@ -63,7 +63,7 @@ plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
 abline(model, col='blue', lwd=2)
 
 # closing the device
-dev.off()
+# dev.off()
 
 # obtaining summary of the model
 summary(model)
@@ -72,22 +72,8 @@ summary(model)
 ```
 
 
-**Answer for (a)**
-
-Residuals:
-    Min      1Q  Median      3Q     Max
--4.5631 -1.3168 -0.1471  1.5229  4.6466
-
-Coefficients:
-                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      44.5716348  0.9690848   45.99   <2e-16 ***
-CURB.WEIGHT.2015 -0.0052153  0.0002401  -21.72   <2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 2.093 on 83 degrees of freedom
-Multiple R-squared:  0.8504,    Adjusted R-squared:  0.8486
-F-statistic: 471.9 on 1 and 83 DF,  p-value: < 2.2e-16
+**Answer for (a)** 
+Looking at the slop of the line, we can say that as the curb weight increases, the combined MPG decreases.
 
 (b) What is the slope of this regression? Interpret this value in the context of the problem (it may make sense to multiply your values by 1000 for the 
 interpretation).
