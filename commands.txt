@@ -7,7 +7,7 @@ Rscript -e "rmarkdown::render('C:/GitHub/StatisticsInR/wk_15/Activity7.Rmd', out
 
 
 # for pdf documents
-Rscript -e "rmarkdown::render('Activity6.Rmd', output_format = 'pdf_document')"
-Rscript -e "rmarkdown::render('Activity3.Rmd')"
+Rscript -e "rmarkdown::render('Activity7.Rmd', output_format = 'pdf_document')"
+Rscript -e "rmarkdown::render('Activity7.Rmd')"
 
 C:/GitHub/StatisticsInR/wk_15
