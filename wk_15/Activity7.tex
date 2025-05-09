@@ -1,0 +1,343 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Activity 7 - Salvin Chowdhury},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Activity 7 - Salvin Chowdhury}
+\author{}
+\date{\vspace{-2.5em}Due Date: May 9, 2025}
+
+\begin{document}
+\maketitle
+
+\subsection{Problem 1:}\label{problem-1}
+
+Data for fuel economy, weight, and price for many popular 2015 models
+and their 2024 counterparts of vehicles is recorded in the file
+``Activity7CarData2015.csv'' (which can be found in Canvas). All 2015
+vehicles for which data was gathered are not hybrids, and use regular
+unleaded gasoline.
+
+For this problem, we wish to investigate the relationship between fuel
+economy and weight of vehicles, and we'll stick with the 2015 models to
+do this.
+
+In particular, we want to predict the fuel economy of the vehicle
+(combined city \& highway - in miles per gallon) using the curb weight
+of the vehicle (the total weight of the vehicle, not including
+passengers or cargo - in pounds).
+
+Be sure to run the code chunk below so that you can use the csv file
+within this markdown file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpgdata }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Activity7CarData2015.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  First, create a scatter plot of the data we are interested in. Include
+  a title for the plot as well as clear labels for each of the axes.
+  Describe the trend (if any) between the variables. Then, find the
+  simple linear regression model and add the plot of this line to the
+  scatter plot. Finally, take a look at the summary of the model, as
+  this will be useful going forward.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# code for part (a)}
+
+\CommentTok{\# combined mpg vs weight}
+\FunctionTok{plot}\NormalTok{(mpgdata}\SpecialCharTok{$}\NormalTok{CURB.WEIGHT}\FloatTok{.2015}\NormalTok{, mpgdata}\SpecialCharTok{$}\NormalTok{COMBINED.MPG}\FloatTok{.2015}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"MPG vs Curb Weight (2015)"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Curb Weight (lbs)"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Combined MPG"}\NormalTok{,}
+     \AttributeTok{pch =} \DecValTok{19}\NormalTok{, }\AttributeTok{col =} \StringTok{"darkgreen"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity7_files/figure-latex/unnamed-chunk-2-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# fitting the linear regression model}
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(COMBINED.MPG}\FloatTok{.2015} \SpecialCharTok{\textasciitilde{}}\NormalTok{ CURB.WEIGHT}\FloatTok{.2015}\NormalTok{, }\AttributeTok{data =}\NormalTok{ mpgdata)}
+
+\CommentTok{\# producing a new scatter plot}
+\FunctionTok{plot}\NormalTok{(mpgdata}\SpecialCharTok{$}\NormalTok{CURB.WEIGHT}\FloatTok{.2015}\NormalTok{, mpgdata}\SpecialCharTok{$}\NormalTok{COMBINED.MPG}\FloatTok{.2015}\NormalTok{,}
+    \AttributeTok{main =} \StringTok{"MPG vs Curb Weight with Linear Regression Line"}\NormalTok{,}
+    \AttributeTok{xlab =} \StringTok{"Curb Weight (lbs)"}\NormalTok{,}
+    \AttributeTok{ylab =} \StringTok{"Combined MPG"}\NormalTok{,}
+    \AttributeTok{pch=}\DecValTok{19}
+\NormalTok{)}
+
+\CommentTok{\# adding the regression line}
+\FunctionTok{abline}\NormalTok{(model, }\AttributeTok{col=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity7_files/figure-latex/unnamed-chunk-3-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# obtaining summary of the model}
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = COMBINED.MPG.2015 ~ CURB.WEIGHT.2015, data = mpgdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.5631 -1.3168 -0.1471  1.5229  4.6466 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)      44.5716348  0.9690848   45.99   <2e-16 ***
+## CURB.WEIGHT.2015 -0.0052153  0.0002401  -21.72   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.093 on 83 degrees of freedom
+## Multiple R-squared:  0.8504, Adjusted R-squared:  0.8486 
+## F-statistic: 471.9 on 1 and 83 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\textbf{Answer for (a)} Looking at the slop of the line, we can say that
+as the curb weight increases, the combined MPG decreases.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What is the slope of this regression? Interpret this value in the
+  context of the problem (it may make sense to multiply your values by
+  1000 for the interpretation).
+\end{enumerate}
+
+\textbf{Answer for (b)} Since the slope of the regression line is
+-0.0052, which means for every 1,000 pound increase in a vehicle's curb
+weight,, the combined fuel economy is expected to decrease by about 5.22
+MPG. This simply means that the combined fuel economy is expected to
+decrease by about 5.22 MPG.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  What is the value of the y-intercept of this regression? Interpret
+  this value in the context of the problem (regardless of whether this
+  logically makes sense or not). Does the interpretation of the
+  intercept have a logical interpretation in this example? Why or why
+  not?
+\end{enumerate}
+
+\textbf{Answer for (c)} Looking at the value of the intercept, we see
+that it is 44.57. This is simply the predicted value when the curb
+weight is 0 pounds. The interpretation of the intercept doesn't have a
+logical interpretation in this example because a vehicle can't have zero
+weight.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Suppose the curb weight of a vehicle in 2015 was 4000 pounds. What
+  would our model predict the fuel economy to be?
+\end{enumerate}
+
+\textbf{Answer for (d)} To calculated the MPG, we use the formula y = mx
++ c, where m = -0.0052153, x = 4000 and c = 44.5716348. Using the
+following values, we get our value to be 23.71. To concluce, we say that
+if a vehicle has a curb weight of 4000 pounds, the model predicts the
+fuel economy to be 23.71 MPG.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  What is the residual for the 2015 Honda CR-V?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# fetching the data}
+\NormalTok{honda\_crv }\OtherTok{=}\NormalTok{ mpgdata[mpgdata}\SpecialCharTok{$}\NormalTok{MAKE }\SpecialCharTok{==} \StringTok{\textquotesingle{}Honda\textquotesingle{}}  \SpecialCharTok{\&}\NormalTok{ mpgdata}\SpecialCharTok{$}\NormalTok{MODEL }\SpecialCharTok{==} \StringTok{"CR{-}V"}\NormalTok{,]}
+
+\CommentTok{\# retrieving the actual and predicted MPG}
+\NormalTok{actual\_mpg }\OtherTok{\textless{}{-}}\NormalTok{ honda\_crv}\SpecialCharTok{$}\NormalTok{COMBINED.MPG}\FloatTok{.2015}
+\NormalTok{predicted\_mpg }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model, }\AttributeTok{newdata =}\NormalTok{ honda\_crv)}
+
+\CommentTok{\# calculating the residual}
+\NormalTok{residual\_value }\OtherTok{\textless{}{-}}\NormalTok{ actual\_mpg }\SpecialCharTok{{-}}\NormalTok{ predicted\_mpg}
+\FunctionTok{print}\NormalTok{(residual\_value)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       35 
+## 1.953051
+\end{verbatim}
+
+\textbf{Answer for (e)} The residual is 1.953051
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  What is the r\^{}2 value? Interpret this value.
+\end{enumerate}
+
+\textbf{Answer for (f)} The R\^{}2 value is 0.8504. This means that
+about 85.04\% of the variation in 2015 combined MPG across vehicles can
+be explained by their curb weight.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Calculate a 95\% confidence interval for the slope coefficient, and
+  provide an interpretation in the context of the problem (it may make
+  more sense to multiply your values by 1000 for your interpretation).
+  You can use the information from our model summary to do this, or
+  there is a confint() function that can accomplish this as well - you
+  can choose which you prefer to use.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# code for part (g)}
+
+\CommentTok{\# finding the confidence interval}
+\FunctionTok{confint}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         2.5 %      97.5 %
+## (Intercept)      42.644164193 46.49910549
+## CURB.WEIGHT.2015 -0.005692797 -0.00473777
+\end{verbatim}
+
+\textbf{Answer for (g)} The 65\% confidence interval for the slope is
+{[}-0.005692797, -0.00473777{]} We multiply the values by a 1,000 which
+means {[}−5.6928,−4.7378{]}. This means based on the 2015 vehicle data,
+we are 95\% confident that for every 1,000 pound increase in curb
+weight, the combined fuel economy decreases by between 4.74 and 5.69
+MPG.
+
+\end{document}

@@ -1,7 +1,7 @@
 ---
 title: "Activity 7 - Salvin Chowdhury"
 date: 'Due Date: May 9, 2025'
-output: html_notebook
+output: pdf_document
 ---
 
 ## Problem 1:
@@ -27,9 +27,6 @@ Finally, take a look at the summary of the model, as this will be useful going f
 
 # code for part (a)
 
-# saving the plot
-# png("C:/GitHub/StatisticsInR/wk_15/plots/mpg_vs_weight.png", width = 800, height = 600)
-
 # combined mpg vs weight
 plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
      main = "MPG vs Curb Weight (2015)",
@@ -37,8 +34,6 @@ plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
      ylab = "Combined MPG",
      pch = 19, col = "darkgreen")
 
-# saving the plot
-# dev.off()
 
 
 ```
@@ -47,9 +42,6 @@ plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
 
 # fitting the linear regression model
 model <- lm(COMBINED.MPG.2015 ~ CURB.WEIGHT.2015, data = mpgdata)
-
-# saving the plot
-# png("C:/GitHub/StatisticsInR/wk_15/plots/mpg_vs_weight_regression.png", width = 800, height = 600)
 
 # producing a new scatter plot
 plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
@@ -61,9 +53,6 @@ plot(mpgdata$CURB.WEIGHT.2015, mpgdata$COMBINED.MPG.2015,
 
 # adding the regression line
 abline(model, col='blue', lwd=2)
-
-# closing the device
-# dev.off()
 
 # obtaining summary of the model
 summary(model)
